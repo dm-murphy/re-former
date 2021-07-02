@@ -1,0 +1,28 @@
+<%= form_with model: @user do |form| %>
+
+  <% if @user.errors.any? %>
+    <ul>
+    <%= @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= label_tag(:username, "Pick a good one...") %>
+    <%= form.text_field :username, placeholder: 'Username' %>
+  </p>
+  
+  <p>
+    <%= label_tag(:email, "Email:") %>
+    <%= form.email_field :email, placeholder: 'email@email.com' %>
+  </p>
+  
+  <p>
+    <%= label_tag(:password, "Password:") %>
+    <%= form.password_field(:password, placeholder: '****************') %>
+  </p>
+
+    <%= form.submit "Submit" %>
+
+<% end %>
