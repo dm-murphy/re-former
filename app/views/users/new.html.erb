@@ -1,4 +1,5 @@
-<!-- Original HTML form
+<%# Original HTML form %>
+<% if false %>
 
 <form action="/users" method="post" accept-charset="UTF-8">
   <label for="username">Username:</label>
@@ -11,9 +12,12 @@
   <input type="hidden" name="authenticity_token" value=" <%= form_authenticity_token %>">
 </form>
 
--->
+<% end %>
 
- <%= form_tag("/users", method: "post") do %>
+<%# Original Railsy form_tag form %>
+<% if false %>
+
+<%= form_tag("/users", method: "post") do %>
   <%= label_tag(:username, "Username:") %>
   <%= text_field_tag(:username) %>
   <%= label_tag(:email, "Email:") %>
@@ -23,5 +27,22 @@
   <%= submit_tag("Submit") %>
 <% end %>
 
+<% end %>
 
- 
+<%# Railsy-er form_with form %> 
+
+<%= form_with model: @user do |form| %>
+<p>
+  <%= label_tag(:username, "Pick a good one...") %>
+  <%= form.text_field :username, placeholder: 'Username' %>
+</p>
+<p>
+  <%= label_tag(:email, "Email:") %>
+  <%= form.email_field :email, placeholder: 'email@email.com' %>
+</p>
+<p>
+  <%= label_tag(:password, "Password:") %>
+  <%= form.password_field(:password, placeholder: '****************') %>
+</p>
+  <%= form.submit "Submit" %>
+<% end %>
